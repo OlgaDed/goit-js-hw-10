@@ -16,7 +16,7 @@ let timerId = null;
 
 startBtn.disabled = true;
 
-const options = {
+flatpickr(input, {
   enableTime: true,
   time_24hr: true,
   defaultDate: new Date(),
@@ -35,17 +35,14 @@ const options = {
       startBtn.disabled = false;
     }
   },
-};
-
-flatpickr(input, options);
+});
 
 startBtn.addEventListener('click', () => {
   startBtn.disabled = true;
   input.disabled = true;
 
   timerId = setInterval(() => {
-    const now = new Date();
-    const diff = userSelectedDate - now;
+    const diff = userSelectedDate - new Date();
 
     if (diff <= 0) {
       clearInterval(timerId);
